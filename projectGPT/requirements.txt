@@ -1,0 +1,4 @@
+yfinance
+matplotlib
+google-generativeai
+pandas
