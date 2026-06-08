@@ -1,84 +1,60 @@
-# Altın vs Gümüş Yatırım Analizi (Gold vs Silver Investment Analysis)
+# Altin ve Gumus Karsilastirma Araci
 
-Bu proje, belirli bir yılda **altın mı yoksa gümüş mü daha çok kazandırdı** sorusuna **Yahoo Finance API** ve **Gemini Flash 2.0 API** kullanarak cevap veren bir yapay zeka tabanlı analiz aracıdır.
+Bu klasor, belirli bir yil icin altin ve gumus fiyat performansini karsilastiran
+Python uygulamasini icerir. Uygulama fiyat verisini alir, temel performans
+hesaplarini yapar ve grafik uretir. Gemini API anahtari tanimliysa ek yorum
+metni de uretebilir.
 
-## 📌 Özellikler
+## Ozellikler
 
-- 📊 **Yahoo Finance API** kullanarak geçmiş altın ve gümüş fiyat verilerini çeker.
-- 🧠 **Gemini Flash 2.0 API** ile farklı kişiliklerde yatırım analizleri sunar.
-- 🔢 **Matematiksel yedekleme sistemi**, Gemini API çalışmazsa temel hesaplamalar yapar.
-- 📈 **Grafikler oluşturur**, yatırımcıların görsel olarak karşılaştırma yapmasını sağlar.
-- 📝 **Log sistemi**, veri çekme ve API hatalarını kaydederek hata ayıklamayı kolaylaştırır.
-- 🏗️ **SOLID ve Clean Code prensiplerine uygun şekilde geliştirilmiştir.
-- 🛠️ **Virtual Environment** (Sanal Ortam) kullanarak bağımlılıkları izole eder.
-- 📄 **Detaylı bir rapor ve README içeriğiyle birlikte ZIP olarak teslim edilmeye hazırdır.
+- Yahoo Finance fiyat verisi cekme
+- Altin/gumus yillik getiri karsilastirmasi
+- Matplotlib ile grafik uretimi
+- API anahtari varsa Gemini destekli yorum
+- API anahtari yoksa hesaplama odakli fallback cikti
+- Basit loglama ve hata mesaji yonetimi
 
----
-
-## 🚀 Kurulum
-
-### 1️⃣ Depoyu Kopyalayın
-Öncelikle projeyi yerel makinenize klonlayın veya ZIP dosyası olarak indirin:
+## Kurulum
 
 ```bash
-git clone https://github.com/vamos99/gold-silver-compare.git
-cd gold-silver-compare
-```
-
-### 2️⃣ Virtual Environment Oluşturun ve Etkinleştirin
-
-Python bağımlılıklarını izole etmek için bir sanal ortam oluşturun:
-
-```bash
-python -m venv venv
-source venv/bin/activate  # MacOS/Linux için
-venv\Scripts\activate      # Windows için
-```
-
-### 3️⃣ Gerekli Kütüphaneleri Yükleyin
-
-Bağımlılıkları yüklemek için:
-
-```bash
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4️⃣ API Anahtarlarını Tanımlayın
+## Ortam Degiskeni
 
-`env_setup.sh` dosyasını oluşturun ve aşağıdaki gibi API anahtarlarınızı girin:
-
-```bash
-#!/bin/bash
-export GEMINI_API_KEY="your_gemini_api_key"
-```
-
-### 5️⃣ Uygulamayı Çalıştırın
+Gemini yorum ozelligi opsiyoneldir:
 
 ```bash
-python compare.py
+export GEMINI_API_KEY="your_api_key"
 ```
 
-## 📊 Kullanım
+Ornek dosya:
 
-1. Programı çalıştırdıktan sonra belirtilen yıl için altın ve gümüş fiyat analizini alabilirsiniz.
-2. Eğer Gemini API çalışmazsa, sistem matematiksel yedekleme mekanizmasını devreye sokacaktır.
-3. Çıktılar hem grafiksel hem de metinsel olarak sunulacaktır.
+```bash
+cp env_setup.sh.example env_setup.sh
+```
 
-## 📜 Kullanılan Teknolojiler
+`env_setup.sh` icine gercek anahtar yaziliyorsa bu dosya Git'e eklenmemelidir.
 
-- Python 3.x
-- Yahoo Finance API
-- Gemini Flash 2.0 API
-- Matplotlib, Pandas, Requests
-- SOLID & Clean Code Prensipleri
-- Logging Mekanizması
+## Calistirma
 
-## 📖 Proje Geliştirme Süreci
+```bash
+python main.py
+```
 
-Bu proje geliştirilirken aşağıdaki yapay zeka modellerinden destek alınmıştır:
-- Claude 3.7
-- Claude 3.5 Sonnet
-- GPT-4
-- Gemini Flash 2.0
+## Proje Yapisi
 
-Tüm modeller, kod yapısı, optimizasyonlar ve analiz yöntemleri hakkında geri bildirim sağlamak için kullanılmıştır.
+- `main.py`: uygulama giris noktasi
+- `src/data_fetcher.py`: fiyat verisi alma
+- `src/analyzer.py`: getiri ve karsilastirma hesaplari
+- `src/plotter.py`: grafik uretimi
+- `src/commentator.py`: opsiyonel Gemini yorum katmani
+
+## Sinirlar
+
+- Finansal karar destegi veya yatirim tavsiyesi amacli degildir.
+- Dis veri kaynagi ve opsiyonel Gemini API durumuna bagli calisir.
+- Test ve veri dogrulama kapsami sinirlidir; repo egitim calismasi olarak
+  tutulmustur.
